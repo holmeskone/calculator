@@ -18,7 +18,27 @@ const divide = function(firstNumber,lastNumber){
     return (firstNumber/lastNumber)
 }
 
+const operate = (firstNumber, lastNumber, operator) => {
+    if(operator = '+'){
+        const result = add(firstNumber,lastNumber);
+        return('The result is ' + result) 
+    }
+    else if(operator = '-'){
+        const result = subtract(firstNumber,lastNumber);
+        return('The result is ' + result) 
+    }
 
+    else if(operator = '*'){
+        const result = multiply(firstNumber,lastNumber);
+        return('The result is ' + result) 
+    }
+
+    else if (operator = '/'){
+        const result = divide(firstNumber,lastNumber);
+        return('The result is ' + result) 
+    }
+
+}
 
 
 // let firstNumber = a;
