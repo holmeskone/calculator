@@ -25,7 +25,7 @@ Each operation is implemented as a function (`add()`, `subtract()`, `multiply()`
   - Equals (`=`) button
   - Clear (`C`) button
 - The calculator has a display area for showing numbers and results. Initially, dummy numbers can be used to test the layout.
-
+ 
 ### 4. Display Management
 - Functions are created to populate the display when number buttons are clicked.
 - The display value is stored in a variable for further operations.
