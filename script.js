@@ -1,15 +1,32 @@
-const add = function(a,b){
-    return (a+b)
+const add = function(firstNumber,lastNumber){
+    let operator = '+';
+    return (firstNumber + lastNumber)
 }
 
-const subtract = function(a,b){
-    return (a-b)
+const subtract = function(firstNumber,lastNumber){
+    let operator = '-';
+    return (firstNumber-lastNumber)
 }
 
-const multiply = function(a,b){
-    return (a*b)
+const multiply = function(firstNumber,lastNumber){
+    let operator = '*';
+    return (firstNumber*lastNumber)
 }
 
-const divide = function(a,b){
-    return (a/b)
+const divide = function(firstNumber,lastNumber){
+    let operator = '/';
+    return (firstNumber/lastNumber)
 }
+
+
+
+
+// let firstNumber = a;
+// let lastNumber = b;
+// let operators = {
+//     '+': add,
+//     '-': subtract,
+//     '*': multiply,
+//     '/': divide,
+// }
+
