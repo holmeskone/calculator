@@ -46,12 +46,28 @@ const operate = (firstNumber, lastNumber, operator) => {
 
 /*Create a listening variable, that identifies what has been clicked on the calculator
 extracts it's html value and then displays's it on the display secction. */
-const buttonClick = document.getElementById("container");
-buttonClick.addEventListener("click", function(event){
-    const buttonContent = event.target.value;
+
+//Create a variable where the buttons will be clicked.
+const buttonClickSection = document.getElementById("container");
+
+// Define a variable to store the value globally
+let buttonContent = "";
+
+//Listen for the clicks.
+buttonClickSection.addEventListener("click", function(event){
+    //Get the value of the button clicked
+    buttonContent = event.target.value;
     // Select the div by its ID and set it as it's innerHTML to display.
     document.getElementById("display").innerHTML = buttonContent;
-    let firstButton = buttonContent;
-    console.log(firstButton);
+    console.log("Button clicked, content is now: " + buttonContent);
+
+    useButtonContent(); 
+
 });
 
+// This function will always use the latest value of buttonContent
+function useButtonContent() {
+    console.log("Current button content:", buttonContent);
+}
+
+//Store the first number, store the operator and store the second number
