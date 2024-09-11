@@ -1,15 +1,15 @@
-const add = function(){
-
+const add = function(a,b){
+    return (a+b)
 }
 
-const subtract = function(){
-
+const subtract = function(a,b){
+    return (a-b)
 }
 
-const multiply = function(){
-
+const multiply = function(a,b){
+    return (a*b)
 }
 
-const divide = function(){
-
+const divide = function(a,b){
+    return (a/b)
 }
