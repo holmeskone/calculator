@@ -1,25 +1,28 @@
 // Create a function to add two values.
 const add = function(firstNumber,lastNumber){
+    let operator = '+';
     let result = parseInt(firstNumber + lastNumber)
-    console.log('The value of this is ' + result)
-    console.log(typeof(result))
+    document.getElementById("display").innerHTML = result;
 }
 // Create a function to subtract two values.
 const subtract = function(firstNumber,lastNumber){
     let operator = '-';
-    return (firstNumber-lastNumber)
+    let result = parseInt(firstNumber - lastNumber)
+    document.getElementById("display").innerHTML = result;
 }
 
 // Create a function to multiply two values.
 const multiply = function(firstNumber,lastNumber){
     let operator = '*';
-    return (firstNumber*lastNumber)
+    let result = parseInt(firstNumber * lastNumber)
+    document.getElementById("display").innerHTML = result;
 }
 
 // Create a function to divide two values.
 const divide = function(firstNumber,lastNumber){
     let operator = '/';
-    return (firstNumber/lastNumber)
+    let result = parseInt(firstNumber / lastNumber)
+    document.getElementById("display").innerHTML = result;
 }
 
 // Create a function to operate that calls on the previously declared functions depending on the operator.
@@ -65,16 +68,17 @@ let valueTwo = 0;
 
 //Create a variable for section buttons will be clicked
 const buttonClickSection = document.getElementById("values");
+//Create a variable for the display section
+let displayValue = document.getElementById("display").innerHTML = "";
+
 //Option 1: Button pressing, this is listening for the clicks.
 buttonClickSection.addEventListener("click", function(event){
     // Check if the clicked element has the class "operand"
     if (event.target.classList.contains("operand")) {
         // Then get the value of the button clicked, we call it buttonContent
         let buttonContent = event.target.value;
-
         // Display value of the number(buttonContent) on the calculator. We select the div by its ID and set it's innerHTML to the value of buttonContent.
         let displayValue = document.getElementById("display").innerHTML = buttonContent;
-        console.log("Display value is now: " + displayValue);
 
         //Anything in display is added to array.
         calculationValues.push(displayValue);
@@ -115,7 +119,7 @@ function ValueDistribution() {
         }
 
         //This section is to arrange the values that get sent to the multiply function
-        else if(calculationValues.includes('')){
+        else if(calculationValues.includes('*')){
             firstNumber = parseInt(calculationValues[0]);
             lastNumber = parseInt(calculationValues[2]);
             multiply(firstNumber,lastNumber)
