@@ -57,9 +57,7 @@ let calculationValues = [];
 let valueOne = 0;
 let valueTwo = 0;
 
-
-
-//Create a variable for section buttons will be clicked.
+//Create a variable for section buttons will be clicked
 const buttonClickSection = document.getElementById("values");
 //Listen for the clicks.
 buttonClickSection.addEventListener("click", function(event){
@@ -110,18 +108,3 @@ function ValueDistribution() {
         }
     }
 }
-
-//Store the first number, store the operator and store the second number
-
-/*If the value in an array and the value -1 are operand then join, else maintain comma"
-numbers = [1,2,3,4,5,6,7,8,9]
-function organiseArray() {
-    for (i=0;i<=calculation.length; i++){
-        if (typeof calculation[i] === 'number') {
-            console.log("This is a number");
-        } else {
-            console.log("The value is not in the array");
-        }
-    }
-}
-*/
