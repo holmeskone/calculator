@@ -1,6 +1,5 @@
 // Create a function to add two values.
 const add = function(firstNumber,lastNumber){
-    let operator = '+';
     let result = parseInt(firstNumber + lastNumber)
     console.log('The value of this is ' + result)
     console.log(typeof(result))
@@ -49,34 +48,67 @@ const operate = (firstNumber, lastNumber, operator) => {
 /*Create a listening variable, that identifies what has been clicked on the calculator
 extracts it's html value and then displays's it on the display secction. */
 
-//Create a variable where the buttons will be clicked.
-const buttonClickSection = document.getElementById("container");
-
 // Define a variable to store the value globally
 let buttonContent = "";
 
 //Define array to add values
 let calculationValues = [];
 
+let valueOne = 0;
+let valueTwo = 0;
+
+
+
+//Create a variable for section buttons will be clicked.
+const buttonClickSection = document.getElementById("values");
 //Listen for the clicks.
 buttonClickSection.addEventListener("click", function(event){
-    //Get the value of the button clicked
-    buttonContent = event.target.value;
-    // Display value on calculator. Select the div by its ID and set it's innerHTML by display.
-    let displayValue = document.getElementById("display").innerHTML = buttonContent;
-    console.log("Display value is now: " + displayValue);
-    //Anything in display is added to array.
-    calculationValues.push(displayValue);
-    console.log('Current array: '+ calculationValues)
-    console.log(typeof(calculationValues[0]))
-    useButtonContent(); 
+    // Check if the clicked element has the class "operand"
+    if (event.target.classList.contains("operand")) {
+        // Get the value of the button clicked
+        let buttonContent = event.target.value;
+        // Do something with buttonContent
+        console.log(buttonContent);
 
+        // Display value on calculator. Select the div by its ID and set it's innerHTML by display.
+        let displayValue = document.getElementById("display").innerHTML = buttonContent;
+        console.log("Display value is now: " + displayValue);
+
+        //Anything in display is added to array.
+        calculationValues.push(displayValue);
+        console.log('Current array: '+ calculationValues)
+        ValueDistribution(); 
+
+    }
+
+    // Check if the clicked element has the class "operator"
+    else if (event.target.classList.contains("operator")) {
+        // Get the value of the button clicked
+        let buttonContentOperator = event.target.value;
+        // Do something with buttonContent
+        console.log(buttonContentOperator);
+
+        // Display value on calculator. Select the div by its ID and set it's innerHTML by display.
+        let displayValue = document.getElementById("display").innerHTML = buttonContentOperator;
+        console.log("Display value is now: " + displayValue);
+
+        //Anything in display is added to array.
+        calculationValues.push(displayValue);
+        console.log('Current array: '+ calculationValues)
+        ValueDistribution(); 
+
+    }
 });
 
-// This function will always use the latest value of buttonContent
-function useButtonContent() {
-    console.log("Current button content:", buttonContent);
-    //if(two operands are together, join them)
+// This function will distribute the values to their functions based on their postion (firstNumber, Operator, lastNumber)
+function ValueDistribution() {
+    if ((calculationValues.length) === 3) {
+        if(calculationValues.includes('+')){
+            firstNumber = parseInt(calculationValues[0]);
+            lastNumber = parseInt(calculationValues[2]);
+            add(firstNumber,lastNumber)
+        }
+    }
 }
 
 //Store the first number, store the operator and store the second number
