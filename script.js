@@ -78,10 +78,14 @@ buttonClickSection.addEventListener("click", function(event){
         // Then get the value of the button clicked, we call it buttonContent
         let buttonContent = event.target.value;
         // Display value of the number(buttonContent) on the calculator. We select the div by its ID and set it's innerHTML to the value of buttonContent.
-        let displayValue = document.getElementById("display").innerHTML = buttonContent;
+        // let displayValue = document.getElementById("display").innerHTML = buttonContent;
+
+        // Append the value of buttonContent to the existing display value
+        let displayElement = document.getElementById("display");
+        let value = displayElement.innerHTML += buttonContent;
 
         //Anything in display is added to array.
-        calculationValues.push(displayValue);
+        calculationValues.push(value);
         console.log('Current array: '+ calculationValues)
         ValueDistribution(); 
 
