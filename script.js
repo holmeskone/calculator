@@ -74,12 +74,17 @@ buttonClickSection.addEventListener("click", function(event){
     // Then get the value of the button clicked, we call it buttonContent
     let buttonContent = event.target.value;
     // Check if the clicked element has the class "operand" if so display value
+
+    //This section is for the First number.
     if ((event.target.classList.contains("operand")) && calculationValues.length < 1) {
         // Display value of the number(buttonContent) on the calculator. We select the div by its ID and set it's innerHTML to the value of buttonContent.
         // Append the value of buttonContent to the existing display value
         let displayElement = document.getElementById("display");
         valueOne = displayElement.innerHTML += buttonContent;
+        console.log('The value 1 is:' + valueOne)
     }
+
+    //This section is for the operator (+,-,*,/).
     // Check if the clicked element has the class "operator", we don't display the character.
     else if (event.target.classList.contains("operator") && calculationValues.length < 1) {
         //Anything in display is added to array.
@@ -88,31 +93,35 @@ buttonClickSection.addEventListener("click", function(event){
         console.log('The operator is '+ sign);
     }
 
-    else if ((event.target.classList.contains("operand")) && calculationValues.length >= 1) {
+    //This section is for the second number.
+    else if ((event.target.classList.contains("operand")) && calculationValues[0] != null) {
         // Display value of the number(buttonContent) on the calculator. We select the div by its ID and set it's innerHTML to the value of buttonContent.
-        // Append the value of buttonContent to the existing display value
-        calculationValues.push(sign)
+        // Add the operator (+,-,*,/) into the array, however if the operator IS in the array then don't add. 
+        if (calculationValues[1] != sign){
+            calculationValues.push(sign)
+        }
+
         let displayElementTwo = document.getElementById("display").innerHTML = "" //Restart display when they try insterting the second value
         displayElementTwo = document.getElementById("display"); // Grabs the area to display
         valueTwo = displayElementTwo.innerHTML += buttonContent;
-        calculationValues.push(valueTwo)
+        console.log('The value 2 is: ' + valueTwo)
     }
 
     // Check if the clicked element has the class "operator", we don't display the character.
     else if (event.target.classList.contains("operator") && calculationValues.length > 2 ) {
         //Anything in display is added to array.
         sign = event.target.value;
+        
     }
 
-    else if (event.target.classList.contains("equals") && calculationValues.length > 2 ) {
+    else if (event.target.classList.contains("equals") && calculationValues[0] != null ) {
+        calculationValues.push(valueTwo)
         ValueDistribution(calculationValues[0],calculationValues[2])
+        
     }
 
-    console.log('The value 1 is:' + valueOne)
-    console.log('The operator is '+ sign);
     console.log(calculationValues)
-    console.log('The value 2 is:' + valueTwo)
-    console.log('The length of the array ' + calculationValues.length)
+    console.log('The length of the array: ' + calculationValues.length)
 });
 
 
