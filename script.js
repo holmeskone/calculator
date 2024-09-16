@@ -95,14 +95,14 @@ buttonClickSection.addEventListener("click", function(event){
 
     //This section is for the second number.
     else if ((event.target.classList.contains("operand")) && calculationValues[0] != null) {
-        // Display value of the number(buttonContent) on the calculator. We select the div by its ID and set it's innerHTML to the value of buttonContent.
-        // Add the operator (+,-,*,/) into the array, however if the operator IS in the array then don't add. 
+        
+        // This is the second number, so if there's is no operator in the array then push it and restart the values displayed in the array.
         if (calculationValues[1] != sign){
-            calculationValues.push(sign)
+            calculationValues.push(sign);
+            document.getElementById("display").innerHTML = ""
         }
 
-        let displayElementTwo = document.getElementById("display").innerHTML = "" //Restart display when they try insterting the second value
-        displayElementTwo = document.getElementById("display"); // Grabs the area to display
+        displayElementTwo = document.getElementById("display"); // Grabs the area to display and displays value.
         valueTwo = displayElementTwo.innerHTML += buttonContent;
         console.log('The value 2 is: ' + valueTwo)
     }
