@@ -26,7 +26,7 @@ const divide = function(firstNumber,lastNumber){
 }
 
 // Create a function to operate that calls on the previously declared functions depending on the operator.
-const operate = (firstNumber, lastNumber, operator) => {
+const operate = (firstNumber, operator, lastNumber) => {
     if(operator = '+'){
         const result = add(firstNumber,lastNumber);
         return('The result is ' + result) 
@@ -53,12 +53,10 @@ extracts it's html value and then displays's it on the display secction. */
 
 // Define a variable to store the value globally
 let buttonContent = "";
-
-//Define array to add values
+let sign = '';
 let calculationValues = [];
-
-let valueOne = 0;
-let valueTwo = 0;
+let valueOne = '' ;
+let valueTwo = '' ;
 
 
 /*This section displays values on the calculator "screen"
@@ -73,46 +71,60 @@ let displayValue = document.getElementById("display").innerHTML = "";
 
 //Option 1: Button pressing, this is listening for the clicks.
 buttonClickSection.addEventListener("click", function(event){
-    // Check if the clicked element has the class "operand"
-    if (event.target.classList.contains("operand")) {
-        // Then get the value of the button clicked, we call it buttonContent
-        let buttonContent = event.target.value;
+    // Then get the value of the button clicked, we call it buttonContent
+    let buttonContent = event.target.value;
+    // Check if the clicked element has the class "operand" if so display value
+    if ((event.target.classList.contains("operand")) && calculationValues.length < 1) {
         // Display value of the number(buttonContent) on the calculator. We select the div by its ID and set it's innerHTML to the value of buttonContent.
-        // let displayValue = document.getElementById("display").innerHTML = buttonContent;
-
         // Append the value of buttonContent to the existing display value
         let displayElement = document.getElementById("display");
-        let value = displayElement.innerHTML += buttonContent;
-
+        valueOne = displayElement.innerHTML += buttonContent;
+    }
+    // Check if the clicked element has the class "operator", we don't display the character.
+    else if (event.target.classList.contains("operator") && calculationValues.length < 1) {
         //Anything in display is added to array.
-        calculationValues.push(value);
-        console.log('Current array: '+ calculationValues)
-        ValueDistribution(); 
+        calculationValues.push(valueOne)
+        sign = event.target.value;
+        console.log('The operator is '+ sign);
+    }
 
+    else if ((event.target.classList.contains("operand")) && calculationValues.length >= 1) {
+        // Display value of the number(buttonContent) on the calculator. We select the div by its ID and set it's innerHTML to the value of buttonContent.
+        // Append the value of buttonContent to the existing display value
+        calculationValues.push(sign)
+        let displayElementTwo = document.getElementById("display").innerHTML = "" //Restart display when they try insterting the second value
+        displayElementTwo = document.getElementById("display"); // Grabs the area to display
+        valueTwo = displayElementTwo.innerHTML += buttonContent;
+        calculationValues.push(valueTwo)
     }
 
     // Check if the clicked element has the class "operator", we don't display the character.
-    else if (event.target.classList.contains("operator")) {
-        // Get the value of the button clicked
-        let buttonContentOperator = event.target.value;
-        // Do something with buttonContent
-        console.log(buttonContentOperator);
-
+    else if (event.target.classList.contains("operator") && calculationValues.length > 2 ) {
         //Anything in display is added to array.
-        calculationValues.push(buttonContentOperator);
-        console.log('Current array: '+ calculationValues)
-        ValueDistribution(); 
-
+        sign = event.target.value;
     }
+
+    else if (event.target.classList.contains("equals") && calculationValues.length > 2 ) {
+        ValueDistribution(calculationValues[0],calculationValues[2])
+    }
+
+    console.log('The value 1 is:' + valueOne)
+    console.log('The operator is '+ sign);
+    console.log(calculationValues)
+    console.log('The value 2 is:' + valueTwo)
+    console.log('The length of the array ' + calculationValues.length)
 });
 
+
 // This function will distribute the values to their functions based on their postion (firstNumber, Operator, lastNumber)
-function ValueDistribution() {
+function ValueDistribution(firstOperand, lastOperand) {
+    console.log('Value One: ' + valueOne)
+    console.log('Value Two: ' + valueTwo)
     if ((calculationValues.length) === 3) {
         //This section is to arrange the values that get sent to the add function
         if(calculationValues.includes('+')){
-            firstNumber = parseInt(calculationValues[0]);
-            lastNumber = parseInt(calculationValues[2]);
+            firstNumber = parseInt(firstOperand);
+            lastNumber = parseInt(lastOperand);
             add(firstNumber,lastNumber)
         }
         //This section is to arrange the values that get sent to the subtract function
@@ -137,3 +149,4 @@ function ValueDistribution() {
         }
     }
 }
+
