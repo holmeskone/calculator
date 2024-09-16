@@ -1,49 +1,41 @@
 // Create a function to add two values.
 const add = function(firstNumber,lastNumber){
-    let operator = '+';
     let result = parseInt(firstNumber + lastNumber)
     document.getElementById("display").innerHTML = result;
 }
 // Create a function to subtract two values.
 const subtract = function(firstNumber,lastNumber){
-    let operator = '-';
     let result = parseInt(firstNumber - lastNumber)
     document.getElementById("display").innerHTML = result;
 }
 
 // Create a function to multiply two values.
 const multiply = function(firstNumber,lastNumber){
-    let operator = '*';
     let result = parseInt(firstNumber * lastNumber)
     document.getElementById("display").innerHTML = result;
 }
 
 // Create a function to divide two values.
 const divide = function(firstNumber,lastNumber){
-    let operator = '/';
     let result = parseInt(firstNumber / lastNumber)
     document.getElementById("display").innerHTML = result;
 }
 
 // Create a function to operate that calls on the previously declared functions depending on the operator.
 const operate = (firstNumber, operator, lastNumber) => {
-    if(operator = '+'){
-        const result = add(firstNumber,lastNumber);
-        return('The result is ' + result) 
+    if(operator === '+'){
+        add(firstNumber,lastNumber);
     }
-    else if(operator = '-'){
-        const result = subtract(firstNumber,lastNumber);
-        return('The result is ' + result) 
+    else if(operator === '-'){
+        subtract(firstNumber,lastNumber);
     }
 
-    else if(operator = '*'){
-        const result = multiply(firstNumber,lastNumber);
-        return('The result is ' + result) 
+    else if(operator === '*'){
+        multiply(firstNumber,lastNumber);
     }
 
-    else if (operator = '/'){
-        const result = divide(firstNumber,lastNumber);
-        return('The result is ' + result) 
+    else if (operator === '/'){
+        divide(firstNumber,lastNumber);
     }
 
 }
@@ -88,7 +80,7 @@ buttonClickSection.addEventListener("click", function(event){
     // Check if the clicked element has the class "operator", we don't display the character.
     else if (event.target.classList.contains("operator") && calculationValues.length < 1) {
         //Anything in display is added to array.
-        calculationValues.push(valueOne)
+        calculationValues.push(parseInt(valueOne))
         sign = event.target.value;
         console.log('The operator is '+ sign);
     }
@@ -115,8 +107,8 @@ buttonClickSection.addEventListener("click", function(event){
     }
 
     else if (event.target.classList.contains("equals") && calculationValues[0] != null ) {
-        calculationValues.push(valueTwo)
-        ValueDistribution(calculationValues[0],calculationValues[2])
+        calculationValues.push(parseInt(valueTwo))
+        operate(calculationValues[0], calculationValues[1], calculationValues[2]);
         
     }
 
@@ -126,46 +118,8 @@ buttonClickSection.addEventListener("click", function(event){
         sign = '';
         calculationValues = [];
         document.getElementById("display").innerHTML = '0';
-
-        
     }
 
     console.log(calculationValues)
     console.log('The length of the array: ' + calculationValues.length)
 });
-
-
-// This function will distribute the values to their functions based on their postion (firstNumber, Operator, lastNumber)
-function ValueDistribution(firstOperand, lastOperand) {
-    console.log('Value One: ' + valueOne)
-    console.log('Value Two: ' + valueTwo)
-    if ((calculationValues.length) === 3) {
-        //This section is to arrange the values that get sent to the add function
-        if(calculationValues.includes('+')){
-            firstNumber = parseInt(firstOperand);
-            lastNumber = parseInt(lastOperand);
-            add(firstNumber,lastNumber)
-        }
-        //This section is to arrange the values that get sent to the subtract function
-        else if(calculationValues.includes('-')){
-            firstNumber = parseInt(calculationValues[0]);
-            lastNumber = parseInt(calculationValues[2]);
-            subtract(firstNumber,lastNumber)
-        }
-
-        //This section is to arrange the values that get sent to the multiply function
-        else if(calculationValues.includes('*')){
-            firstNumber = parseInt(calculationValues[0]);
-            lastNumber = parseInt(calculationValues[2]);
-            multiply(firstNumber,lastNumber)
-        }
-        
-        //This section is to arrange the values that get sent to the divide function
-        else if(calculationValues.includes('/')){
-            firstNumber = parseInt(calculationValues[0]);
-            lastNumber = parseInt(calculationValues[2]);
-            divide(firstNumber,lastNumber)
-        }
-    }
-}
-
