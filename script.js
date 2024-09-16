@@ -32,9 +32,13 @@ const multiply = function(firstNumber,lastNumber){
 // Create a function to divide two values.
 const divide = function(firstNumber,lastNumber){
     let result = parseInt(firstNumber / lastNumber)
+    if(lastNumber === 0){
+        result = 'Not a number' 
+    }
     document.getElementById("display").innerHTML = result;
     calculationValues [0] = result;
     calculationValues.splice(1,2)
+
 }
 
 // Create a function to operate that calls on the previously declared functions depending on the operator.
