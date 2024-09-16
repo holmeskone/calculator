@@ -2,23 +2,31 @@
 const add = function(firstNumber,lastNumber){
     let result = parseInt(firstNumber + lastNumber)
     document.getElementById("display").innerHTML = result;
+    calculationValues [0] = result;
+    calculationValues.splice(1,2)
 }
 // Create a function to subtract two values.
 const subtract = function(firstNumber,lastNumber){
     let result = parseInt(firstNumber - lastNumber)
     document.getElementById("display").innerHTML = result;
+    calculationValues [0] = result;
+    calculationValues.splice(1,2)
 }
 
 // Create a function to multiply two values.
 const multiply = function(firstNumber,lastNumber){
     let result = parseInt(firstNumber * lastNumber)
     document.getElementById("display").innerHTML = result;
+    calculationValues [0] = result;
+    calculationValues.splice(1,2)
 }
 
 // Create a function to divide two values.
 const divide = function(firstNumber,lastNumber){
     let result = parseInt(firstNumber / lastNumber)
     document.getElementById("display").innerHTML = result;
+    calculationValues [0] = result;
+    calculationValues.splice(1,2)
 }
 
 // Create a function to operate that calls on the previously declared functions depending on the operator.
@@ -68,19 +76,19 @@ buttonClickSection.addEventListener("click", function(event){
     // Check if the clicked element has the class "operand" if so display value
 
     //This section is for the First number.
-    if ((event.target.classList.contains("operand")) && calculationValues.length < 1) {
+    if ((event.target.classList.contains("operand")) && calculationValues.length === 0) {
         // Display value of the number(buttonContent) on the calculator. We select the div by its ID and set it's innerHTML to the value of buttonContent.
         // Append the value of buttonContent to the existing display value
         let displayElement = document.getElementById("display");
-        valueOne = displayElement.innerHTML += buttonContent;
+        valueOne = parseInt(displayElement.innerHTML += buttonContent);
         console.log('The value 1 is:' + valueOne)
     }
 
     //This section is for the operator (+,-,*,/).
     // Check if the clicked element has the class "operator", we don't display the character.
-    else if (event.target.classList.contains("operator") && calculationValues.length < 1) {
+    else if (event.target.classList.contains("operator") && calculationValues.length <= 1) {
         //Anything in display is added to array.
-        calculationValues.push(parseInt(valueOne))
+        calculationValues.push(valueOne)
         sign = event.target.value;
         console.log('The operator is '+ sign);
     }
@@ -109,6 +117,8 @@ buttonClickSection.addEventListener("click", function(event){
     else if (event.target.classList.contains("equals") && calculationValues[0] != null ) {
         calculationValues.push(parseInt(valueTwo))
         operate(calculationValues[0], calculationValues[1], calculationValues[2]);
+        valueOne = '';
+        valueTwo = '';
         
     }
 
