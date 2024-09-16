@@ -69,7 +69,7 @@ extracts it's html value and then displays's it on the display secction. */
 //Create a variable for section buttons will be clicked
 const buttonClickSection = document.getElementById("values");
 //Create a variable for the display section
-let displayValue = document.getElementById("display").innerHTML = "";
+let displayValue = document.getElementById("display").innerHTML = "0";
 
 //Option 1: Button pressing, this is listening for the clicks.
 buttonClickSection.addEventListener("click", function(event){
@@ -82,7 +82,13 @@ buttonClickSection.addEventListener("click", function(event){
         // Display value of the number(buttonContent) on the calculator. We select the div by its ID and set it's innerHTML to the value of buttonContent.
         // Append the value of buttonContent to the existing display value
         let displayElement = document.getElementById("display");
-        valueOne = parseInt(displayElement.innerHTML += buttonContent);
+        if(displayElement.innerHTML === '0'){ // If the display element is 0, it means that it's originating from an "AC" (clear) selection, and it should then display the value of the next button clicked. 
+            displayElement.innerHTML = buttonContent;
+            valueOne = parseInt(buttonContent);
+        } // If not then just add the buttons so the appear one after the other on the same display. Eg. 46 instead of showing '4' and then '6'.
+        else{
+            valueOne = parseInt(displayElement.innerHTML += buttonContent);
+        }
     }
 
     //This section is for the operator (+,-,*,/).
