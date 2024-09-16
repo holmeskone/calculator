@@ -120,6 +120,16 @@ buttonClickSection.addEventListener("click", function(event){
         
     }
 
+    else if (event.target.classList.contains("clear")) {
+        valueOne = '';
+        valueTwo = '';
+        sign = '';
+        calculationValues = [];
+        document.getElementById("display").innerHTML = '0';
+
+        
+    }
+
     console.log(calculationValues)
     console.log('The length of the array: ' + calculationValues.length)
 });
