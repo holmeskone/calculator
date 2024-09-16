@@ -1,9 +1,17 @@
+// Define a variable to store the value globally
+let buttonContent = "";
+let sign = '';
+let calculationValues = [];
+let valueOne = '' ;
+let valueTwo = '' ;
+
 // Create a function to add two values.
 const add = function(firstNumber,lastNumber){
     let result = parseInt(firstNumber + lastNumber)
     document.getElementById("display").innerHTML = result;
     calculationValues [0] = result;
     calculationValues.splice(1,2)
+    console.log('This is the length value: ' + calculationValues.length)
 }
 // Create a function to subtract two values.
 const subtract = function(firstNumber,lastNumber){
@@ -51,12 +59,6 @@ const operate = (firstNumber, operator, lastNumber) => {
 /*Create a listening variable, that identifies what has been clicked on the calculator
 extracts it's html value and then displays's it on the display secction. */
 
-// Define a variable to store the value globally
-let buttonContent = "";
-let sign = '';
-let calculationValues = [];
-let valueOne = '' ;
-let valueTwo = '' ;
 
 
 /*This section displays values on the calculator "screen"
@@ -81,14 +83,15 @@ buttonClickSection.addEventListener("click", function(event){
         // Append the value of buttonContent to the existing display value
         let displayElement = document.getElementById("display");
         valueOne = parseInt(displayElement.innerHTML += buttonContent);
-        console.log('The value 1 is:' + valueOne)
     }
 
     //This section is for the operator (+,-,*,/).
     // Check if the clicked element has the class "operator", we don't display the character.
     else if (event.target.classList.contains("operator") && calculationValues.length <= 1) {
         //Anything in display is added to array.
-        calculationValues.push(valueOne)
+        if (valueOne != ''){
+            calculationValues.push(valueOne)
+        }
         sign = event.target.value;
         console.log('The operator is '+ sign);
     }
