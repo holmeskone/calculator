@@ -127,7 +127,7 @@ buttonClickSection.addEventListener("click", function(event){
         
     }
 
-    else if (event.target.classList.contains("equals") && calculationValues[0] != null ) {
+    else if (event.target.classList.contains("equals") && calculationValues.length >=2) {
         calculationValues.push(parseInt(valueTwo))
         operate(calculationValues[0], calculationValues[1], calculationValues[2]);
         valueOne = '';
