@@ -125,7 +125,11 @@ buttonClickSection.addEventListener("click", function(event){
         // This is the second number, so if there's is no operator in the array then push it and restart the values displayed in the array.
         if (calculationValues[1] != sign){
             calculationValues.push(sign);
-            document.getElementById("display").innerHTML = ""
+            document.getElementById("display").innerHTML = "" // Resets screen so lastNumber can be displayed individually from firstNumber
+        }
+
+        else if (buttonContent === '.' && document.getElementById('display').innerHTML.includes('.')){
+            return;
         }
 
         displayElementTwo = document.getElementById("display"); // Grabs the area to display and displays value.
