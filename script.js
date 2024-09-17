@@ -7,7 +7,10 @@ let valueTwo = '' ;
 
 // Create a function to add two values.
 const add = function(firstNumber,lastNumber){
-    let result = parseInt(firstNumber + lastNumber)
+    let result = (parseFloat(firstNumber + lastNumber)).toFixed(4);
+    if (result%1 === 0){
+        result = parseInt(result);
+    }
     document.getElementById("display").innerHTML = result;
     calculationValues [0] = result;
     calculationValues.splice(1,2)
@@ -15,7 +18,7 @@ const add = function(firstNumber,lastNumber){
 }
 // Create a function to subtract two values.
 const subtract = function(firstNumber,lastNumber){
-    let result = parseInt(firstNumber - lastNumber)
+    let result = parseFloat(firstNumber - lastNumber)
     document.getElementById("display").innerHTML = result;
     calculationValues [0] = result;
     calculationValues.splice(1,2)
@@ -23,7 +26,7 @@ const subtract = function(firstNumber,lastNumber){
 
 // Create a function to multiply two values.
 const multiply = function(firstNumber,lastNumber){
-    let result = parseInt(firstNumber * lastNumber)
+    let result = parseFloat(firstNumber * lastNumber)
     document.getElementById("display").innerHTML = result;
     calculationValues [0] = result;
     calculationValues.splice(1,2)
@@ -31,7 +34,7 @@ const multiply = function(firstNumber,lastNumber){
 
 // Create a function to divide two values.
 const divide = function(firstNumber,lastNumber){
-    let result = parseInt(firstNumber / lastNumber)
+    let result = parseFloat(firstNumber / lastNumber)
     if(lastNumber === 0){
         result = 'Not a number' 
     }
@@ -88,10 +91,10 @@ buttonClickSection.addEventListener("click", function(event){
         let displayElement = document.getElementById("display");
         if(displayElement.innerHTML === '0'){ // If the display element is 0, it means that it's originating from an "AC" (clear) selection, and it should then display the value of the next button clicked. 
             displayElement.innerHTML = buttonContent;
-            valueOne = parseInt(buttonContent);
+            valueOne = parseFloat(buttonContent);
         } // If not then just add the buttons so the appear one after the other on the same display. Eg. 46 instead of showing '4' and then '6'.
         else{
-            valueOne = parseInt(displayElement.innerHTML += buttonContent);
+            valueOne = parseFloat(displayElement.innerHTML += buttonContent);
         }
     }
 
@@ -128,7 +131,7 @@ buttonClickSection.addEventListener("click", function(event){
     }
 
     else if (event.target.classList.contains("equals") && calculationValues.length >=2) {
-        calculationValues.push(parseInt(valueTwo))
+        calculationValues.push(parseFloat(valueTwo))
         operate(calculationValues[0], calculationValues[1], calculationValues[2]);
         valueOne = '';
         valueTwo = '';
