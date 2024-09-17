@@ -11,8 +11,13 @@ const add = function(firstNumber,lastNumber){
     let result = (parseFloat(firstNumber + lastNumber));
     if (result%1 === 0){
         result = parseInt(result);
+        document.getElementById("display").innerHTML = result;
     }
-    document.getElementById("display").innerHTML = result;
+
+    else if ((result%1 != 0)){
+        document.getElementById("display").innerHTML = result.toFixed(2);
+    }
+
     calculationValues [0] = result;
     calculationValues.splice(1,2)
     console.log('This is the length value: ' + calculationValues.length)
@@ -20,7 +25,14 @@ const add = function(firstNumber,lastNumber){
 // Create a function to subtract two values.
 const subtract = function(firstNumber,lastNumber){
     let result = parseFloat(firstNumber - lastNumber)
-    document.getElementById("display").innerHTML = result.toFixed(2);
+    if (result%1 === 0){
+        result = parseInt(result);
+        document.getElementById("display").innerHTML = result;
+    }
+
+    else if ((result%1 != 0)){
+        document.getElementById("display").innerHTML = result.toFixed(2);
+    }
     calculationValues [0] = result;
     calculationValues.splice(1,2)
 }
@@ -28,7 +40,13 @@ const subtract = function(firstNumber,lastNumber){
 // Create a function to multiply two values.
 const multiply = function(firstNumber,lastNumber){
     let result = parseFloat(firstNumber * lastNumber)
-    document.getElementById("display").innerHTML = result.toFixed(2);
+    if (result%1 === 0){
+        result = parseInt(result);
+        document.getElementById("display").innerHTML = result;
+    }
+    else{
+        document.getElementById("display").innerHTML = result.toFixed(2);
+    }
     calculationValues [0] = result;
     calculationValues.splice(1,2)
 }
@@ -37,9 +55,17 @@ const multiply = function(firstNumber,lastNumber){
 const divide = function(firstNumber,lastNumber){
     let result = parseFloat(firstNumber / lastNumber)
     if(lastNumber === 0){
-        result = 'Not a number' 
+        result = 'Not a number';
+        document.getElementById("display").innerHTML = result;
     }
-    document.getElementById("display").innerHTML = result.toFixed(2);
+    else if (result%1 === 0){
+        result = parseInt(result);
+        document.getElementById("display").innerHTML = result;
+    }
+
+    else if ((result%1 != 0)){
+        document.getElementById("display").innerHTML = result.toFixed(2);
+    }
     calculationValues [0] = result;
     calculationValues.splice(1,2)
 
@@ -139,10 +165,13 @@ buttonClickSection.addEventListener("click", function(event){
     }
 
     // Check if the clicked element has the class "operator", we don't display the character.
-    else if (event.target.classList.contains("operator") && calculationValues.length > 2 ) {
-        //Anything in display is added to array.
-        sign = event.target.value;
-        
+    else if (event.target.classList.contains("operator") && calculationValues.length >= 2) {
+            calculationValues.push(parseFloat(valueTwo))
+            operate(calculationValues[0], calculationValues[1], calculationValues[2]);
+            valueOne = '';
+            valueTwo = '';
+            //Anything in display is added to array.
+            sign = event.target.value;        
     }
 
     else if (event.target.classList.contains("equals") && calculationValues.length >=2) {
@@ -163,5 +192,5 @@ buttonClickSection.addEventListener("click", function(event){
 
     console.log(calculationValues)
     console.log('The length of the array: ' + calculationValues.length)
-    console.log(typeof(calculationValues[1]));
+    console.log('Button content is: ' + buttonContent);
 });
