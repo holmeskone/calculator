@@ -1,0 +1,92 @@
+body{
+    font-family: Arial, Helvetica, sans-serif;
+    background: linear-gradient(to bottom right, #a78bfa, #f472b6);;
+    color: #333;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    align-items:center;
+    height: 100%;
+    margin: 20px;
+}
+
+#container {
+    display: flex;
+    flex-direction: column;
+    justify-content:flex-start;
+    background-color: white;
+    border: rgb(230, 230, 230) solid 5px;
+    padding : 10px 20px;
+    border-width: 10px;
+    height: 75%;
+    border-radius: 5px;
+    width: 600px;
+
+}
+
+#display{
+    display: flex;
+    flex-direction: column;
+    align-items:end;
+    padding: 5px 10px;
+    margin-left: 3px;
+    margin-right: 3px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-size: 4em;
+    background-color: rgb(230, 230, 230);
+    color: black;
+    border-radius: 5px;
+}
+
+#values{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-start;
+    align-content: flex-start;
+    font-size: 40px;
+    width: 600px;
+    min-width: 490px;
+}
+
+
+.operator{
+    background-color: orange;
+    color: white;
+    font-size: 40px;
+}
+
+.operator:hover{
+    background-color: rgb(234, 153, 2);
+    color: white;
+    font-size: 40px;
+}
+
+.operand:hover{
+    background-color: rgb(220, 220, 220);
+}
+
+.equals:hover{
+    background-color: rgb(220, 220, 220);
+}
+
+.clear:hover{
+    background-color: rgb(220, 220, 220);
+}
+
+button{
+    flex: auto;
+    margin: 3px;
+    padding: 5px;
+    height: 25%;
+    width: 24%;
+    border-radius: 5px;
+    font-size: 20px;
+    border: 0px;
+}
+
+.equals{
+    width: 100%;
+}
