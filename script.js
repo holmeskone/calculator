@@ -90,9 +90,19 @@ buttonClickSection.addEventListener("click", function(event){
         // Append the value of buttonContent to the existing display value
         let displayElement = document.getElementById("display");
         if(displayElement.innerHTML === '0'){ // If the display element is 0, it means that it's originating from an "AC" (clear) selection, and it should then display the value of the next button clicked. 
-            displayElement.innerHTML = buttonContent;
-            valueOne = parseFloat(buttonContent);
+            if(buttonContent === '.'){
+                displayElement.innerHTML += buttonContent;
+                valueOne = parseFloat(buttonContent);
+            }
+            else{
+                displayElement.innerHTML = buttonContent;
+            }
         } // If not then just add the buttons so the appear one after the other on the same display. Eg. 46 instead of showing '4' and then '6'.
+        
+        else if (buttonContent === "." && displayElement.innerHTML.includes(".")) {
+            console.log('Already has a decimal')
+        }
+        
         else{
             valueOne = parseFloat(displayElement.innerHTML += buttonContent);
         }
