@@ -7,7 +7,8 @@ let valueTwo = '' ;
 
 // Create a function to add two values.
 const add = function(firstNumber,lastNumber){
-    let result = (parseFloat(firstNumber + lastNumber)).toFixed(4);
+
+    let result = (parseFloat(firstNumber + lastNumber));
     if (result%1 === 0){
         result = parseInt(result);
     }
@@ -19,7 +20,7 @@ const add = function(firstNumber,lastNumber){
 // Create a function to subtract two values.
 const subtract = function(firstNumber,lastNumber){
     let result = parseFloat(firstNumber - lastNumber)
-    document.getElementById("display").innerHTML = result;
+    document.getElementById("display").innerHTML = result.toFixed(2);
     calculationValues [0] = result;
     calculationValues.splice(1,2)
 }
@@ -27,7 +28,7 @@ const subtract = function(firstNumber,lastNumber){
 // Create a function to multiply two values.
 const multiply = function(firstNumber,lastNumber){
     let result = parseFloat(firstNumber * lastNumber)
-    document.getElementById("display").innerHTML = result;
+    document.getElementById("display").innerHTML = result.toFixed(2);
     calculationValues [0] = result;
     calculationValues.splice(1,2)
 }
@@ -38,7 +39,7 @@ const divide = function(firstNumber,lastNumber){
     if(lastNumber === 0){
         result = 'Not a number' 
     }
-    document.getElementById("display").innerHTML = result;
+    document.getElementById("display").innerHTML = result.toFixed(2);
     calculationValues [0] = result;
     calculationValues.splice(1,2)
 
@@ -95,7 +96,7 @@ buttonClickSection.addEventListener("click", function(event){
                 valueOne = parseFloat(buttonContent);
             }
             else{
-                displayElement.innerHTML = buttonContent;
+                valueOne = displayElement.innerHTML = parseFloat(buttonContent);
             }
         } // If not then just add the buttons so the appear one after the other on the same display. Eg. 46 instead of showing '4' and then '6'.
         
@@ -162,4 +163,5 @@ buttonClickSection.addEventListener("click", function(event){
 
     console.log(calculationValues)
     console.log('The length of the array: ' + calculationValues.length)
+    console.log(typeof(calculationValues[1]));
 });
