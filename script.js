@@ -80,7 +80,7 @@ const operate = (firstNumber, operator, lastNumber) => {
         subtract(firstNumber,lastNumber);
     }
 
-    else if(operator === '*'){
+    else if(operator === 'x'){
         multiply(firstNumber,lastNumber);
     }
 
@@ -193,4 +193,18 @@ buttonClickSection.addEventListener("click", function(event){
     console.log(calculationValues)
     console.log('The length of the array: ' + calculationValues.length)
     console.log('Button content is: ' + buttonContent);
+});
+
+
+
+//This section is for the keydown
+
+window.addEventListener('keydown', function(e) {
+    // Find the button element with a value equal to the key pressed
+    const key = document.querySelector(`button[value='${e.key}']`);
+    
+    // Simulate a click on the button if the key element exists
+    if (key) {
+        key.click();
+    }
 });
